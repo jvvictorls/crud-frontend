@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
-import { requestLogin, setToken } from '../../services/request';
+import { requestLogin } from '../../services/request';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,10 +12,8 @@ function Login() {
 
     try {
       const { data } = await requestLogin('/users/login', { email, password });
-      console.log(data);
-      setToken(data);
 
-      localStorage.setItem('token', data);
+      console.log(data);
 
       setIsLogged(true);
     } catch (error) {
@@ -23,7 +21,9 @@ function Login() {
     }
   };
 
-  if (isLogged) return <Navigate to="/matches" />;
+  const id = localStorage.getItem('id');
+
+  if (isLogged) return <Navigate to={ `/user/${id}` } />;
 
   return (
     <section>

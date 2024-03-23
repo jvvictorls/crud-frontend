@@ -13,11 +13,27 @@ export const requestData = async (endpoint: string) => {
   return data;
 };
 
+export const requestRegister = async (
+  endpoint: string,
+  body: { name: string, email: string, password: string },
+) => {
+  const { data } = await api.post(endpoint, body);
+  return data;
+};
+
+export const deleteUser = async (endpoint: string) => {
+  await api.delete(endpoint);
+  localStorage.clear();
+};
+
 export const requestLogin = async (
   endpoint: string,
   body: { email: string, password: string },
 ) => {
   const { data } = await api.post(endpoint, body);
+  localStorage.setItem('id', data.id);
+  localStorage.setItem('name', data.name);
+  localStorage.setItem('email', data.email);
   return data;
 };
 
