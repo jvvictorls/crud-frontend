@@ -21,6 +21,18 @@ export const requestRegister = async (
   return data;
 };
 
+export const requestUpdateUser = async (
+  endpoint: string,
+  body: { name: string, email: string, password: string },
+) => {
+  const { data } = await api.put(endpoint, body);
+  localStorage.clear();
+  localStorage.setItem('id', data.id);
+  localStorage.setItem('name', data.name);
+  localStorage.setItem('email', data.email);
+  return data;
+};
+
 export const deleteUser = async (endpoint: string) => {
   await api.delete(endpoint);
   localStorage.clear();

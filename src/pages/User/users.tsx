@@ -1,8 +1,9 @@
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { deleteUser } from '../../services/request';
 
 function User() {
+  const navigate = useNavigate();
   const [deleted, setDeleted] = useState(false);
   const name = localStorage.getItem('name');
   const id = localStorage.getItem('id');
@@ -24,8 +25,10 @@ function User() {
         {' '}
         {name}
       </h1>
-      <button>
-        <Link to={ `/users/${id}/edit` }>Editar</Link>
+      <button
+        onClick={ () => navigate(`/user/${id}/edit`) }
+      >
+        Editar usuário
       </button>
       <button
         onClick={ deleteThisUser }
