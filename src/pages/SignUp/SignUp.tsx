@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { requestRegister } from '../../services/request';
+import './SignUp.css';
 
 function SignUp() {
   const [name, setName] = useState<string>('');
@@ -10,13 +11,10 @@ function SignUp() {
   const signUp = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     try {
-      const { data } = await requestRegister(
-        '/users/signup',
-        { name, email, password },
-      );
+      const { data } = await requestRegister('/users/signup', { name, email, password });
       console.log(data);
       setRegister(true);
-    } catch (erro) {
+    } catch (error) {
       setRegister(false);
     }
   };
@@ -24,41 +22,46 @@ function SignUp() {
   if (register) return <Navigate to="/" />;
 
   return (
-    <div>
-      <section>
-        <h1>Cadastre-se!</h1>
+    <div className="signup-container">
+      <section className="signup-section">
+        <h1
+          className="signup-title"
+        >
+          Cadastre-se!
+        </h1>
         <form>
           <label htmlFor="name-input">
+            Nome:
             <input
+              className="signup-input"
               type="text"
               data-testid="signup__input-name"
-              placeholder="Nome"
               value={ name }
               onChange={ (e) => setName(e.target.value) }
             />
-            Nome
           </label>
           <label htmlFor="email-input">
+            Email:
             <input
+              className="signup-input"
               type="email"
               data-testid="signup__input-email"
-              placeholder="Email"
               value={ email }
               onChange={ (e) => setEmail(e.target.value) }
             />
-            Email
           </label>
           <label htmlFor="password-input">
+            Senha:
             <input
+              className="signup-input"
               type="password"
               data-testid="signup__input-password"
-              placeholder="Senha"
               value={ password }
               onChange={ (e) => setPassword(e.target.value) }
             />
-            Senha
           </label>
           <button
+            className="signup-button"
             type="submit"
             data-testid="signup__button"
             onClick={ (e) => signUp(e) }

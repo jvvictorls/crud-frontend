@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { requestUpdateUser } from '../../services/request';
+import './EditUser.css';
 
 function EditUser() {
   const id = localStorage.getItem('id');
@@ -21,16 +22,24 @@ function EditUser() {
   };
   if (updated) return <Navigate to={ `/user/${id}` } />;
   return (
-    <div>
-      <h1>
-        Olá,
-        {' '}
-        {userName}
-      </h1>
-      <form>
+    <div
+      className="edit-container"
+    >
+      <form
+        className="edit-form"
+      >
+        <h1
+          className="edit-title
+      "
+        >
+          Olá,
+          {' '}
+          {userName}
+        </h1>
         <label htmlFor="name">
           Nome:
           <input
+            className="edit-input"
             type="text"
             name="name"
             id="name"
@@ -41,6 +50,7 @@ function EditUser() {
         <label htmlFor="email">
           Email:
           <input
+            className="edit-input"
             type="email"
             name="email"
             id="email"
@@ -51,6 +61,7 @@ function EditUser() {
         <label htmlFor="password">
           Password:
           <input
+            className="edit-input"
             type="password"
             name="password"
             id="password"
@@ -59,6 +70,7 @@ function EditUser() {
           />
         </label>
         <button
+          className="edit-btn"
           type="submit"
           onClick={ (event) => updateUser(event) }
         >

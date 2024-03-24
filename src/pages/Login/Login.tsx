@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import { requestLogin } from '../../services/request';
+import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -24,39 +25,42 @@ function Login() {
   if (isLogged) return <Navigate to={ `/user/${id}` } />;
 
   return (
-    <section>
-      <form>
-        <h1>Área do usuário</h1>
+    <section className="login-container">
+      <form className="login-form">
+        <h1 className="login-title">Área do usuário</h1>
         <label htmlFor="email-input">
+          Email:
           <input
-            className="login__login_input"
+            className="login-input"
             type="text"
             value={ email }
             onChange={ ({ target: { value } }) => setEmail(value) }
             data-testid="login__login_input"
             placeholder="Login"
           />
-          Email
         </label>
         <label htmlFor="password-input">
+          Password:
           <input
+            className="login-input"
             type="password"
             value={ password }
             onChange={ ({ target: { value } }) => setPassword(value) }
             data-testid="login__password_input"
             placeholder="Senha"
           />
-          Password
+
         </label>
         <button
+          className="login-btn"
           data-testid="login__login_btn"
           type="submit"
           onClick={ (event) => login(event) }
         >
           Entrar
         </button>
+        <Link to="/register">Ainda não tenho conta</Link>
       </form>
-      <Link to="/register">Ainda não tenho conta</Link>
     </section>
   );
 }
