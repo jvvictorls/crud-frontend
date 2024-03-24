@@ -13,8 +13,6 @@ function Login() {
     try {
       const { data } = await requestLogin('/users/login', { email, password });
 
-      console.log(data);
-
       setIsLogged(true);
     } catch (error) {
       setIsLogged(false);
