@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { requestUpdateUser } from '../../services/request';
 import './EditUser.css';
 
 function EditUser() {
+  const navigate = useNavigate();
   const id = localStorage.getItem('id');
   const userName = localStorage.getItem('name');
   const [email, setEmail] = useState('');
@@ -75,6 +76,12 @@ function EditUser() {
           onClick={ (event) => updateUser(event) }
         >
           Editar usuário
+        </button>
+        <button
+          className="cancel-edit-btn"
+          onClick={ () => navigate(`/user/${id}`) }
+        >
+          Cancelar
         </button>
       </form>
     </div>

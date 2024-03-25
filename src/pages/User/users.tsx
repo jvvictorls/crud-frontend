@@ -24,19 +24,38 @@ function User() {
   if (deleted) return <Navigate to="/" />;
 
   return (
-    <aside className="user-container">
-      <h1>
-        Hi
-        {' '}
-        {name}
-      </h1>
-      <button onClick={ () => navigate(`/user/${id}/edit`) }>
-        Editar usuário
-      </button>
-      <button onClick={ deleteThisUser }>
-        Deletar minha conta
-      </button>
-    </aside>
+    <section className="user-container">
+      <div
+        className="user-container-div"
+      >
+        <h1>
+          Olá,
+          {' '}
+          {name}
+        </h1>
+        <button
+          onClick={ () => navigate(`/user/${id}/edit`) }
+          className="user-container-button"
+        >
+          Editar usuário
+        </button>
+        <button
+          className="user-container-button"
+          onClick={ () => {
+            localStorage.clear();
+            navigate('/');
+          } }
+        >
+          Fazer Logout
+        </button>
+        <button
+          onClick={ deleteThisUser }
+          className="delete-btn"
+        >
+          Deletar minha conta
+        </button>
+      </div>
+    </section>
   );
 }
 

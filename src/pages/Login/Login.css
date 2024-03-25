@@ -28,6 +28,27 @@
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+
+  .show-password-btn {
+    width: 40%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .login-error {
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #721c24;
+  }
   
   .login-btn {
     width: 100%;
@@ -39,7 +60,8 @@
     cursor: pointer;
   }
   
-  .login-btn:hover {
+  .login-btn:hover, 
+  .show-password-btn:hover {
     background-color: #0056b3;
   }
   
